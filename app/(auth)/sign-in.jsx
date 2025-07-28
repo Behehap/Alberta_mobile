@@ -1,10 +1,10 @@
 import { useSignIn } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Alert,
-  Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -41,7 +41,7 @@ const SignInScreen = () => {
 
       if (signInAttempt.status === "complete") {
         await setActive({ session: signInAttempt.createdSessionId });
-        router.replace("/home"); // Redirect after successful sign-in
+        router.replace("/home");
       } else {
         Alert.alert("Error", "Sign in failed. Please try again");
       }
@@ -67,7 +67,7 @@ const SignInScreen = () => {
             <Image
               source={require("../../assets/images/SignIn.png")}
               style={authStyles.image}
-              resizeMode="contain"
+              content="contain"
             />
           </View>
 
