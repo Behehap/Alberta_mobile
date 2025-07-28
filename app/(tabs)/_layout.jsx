@@ -1,52 +1,44 @@
-import { useAuth } from "@clerk/clerk-expo";
-import { Ionicons } from "@expo/vector-icons";
-import { Redirect, Tabs } from "expo-router";
-import { COLORS } from "../../constants/colors";
+import { Feather } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 
-const TabsLayout = () => {
-  const { isSignedIn } = useAuth();
-
-  if (!isSignedIn) return <Redirect href={"/(auth)/sign-in"} />;
+export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: COLORS.primary,
-        tabBarInActiveTintColor: COLORS.textLight,
+        tabBarActiveTintColor: "#007bff",
+        tabBarInactiveTintColor: "#36454F",
         tabBarStyle: {
-          backgroundColor: COLORS.white,
-          borderTopColor: COLORS.border,
-          borderTopWidth: 1,
-          paddingBottom: 8,
-          paddingTop: 8,
-          height: 66,
+          backgroundColor: "#e9f5f8",
+          height: 80,
+          paddingBottom: 10,
+          paddingTop: 10,
         },
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: "600",
+          fontWeight: "bold",
         },
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="analysis"
         options={{
-          title: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
+          title: "آمار و تحلیل",
+          tabBarIcon: ({ color }) => (
+            <Feather name="bar-chart-2" size={24} color={color} />
           ),
         }}
       />
+
       <Tabs.Screen
-        name="statics"
+        name="index"
         options={{
-          title: "statics",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="stats-chart" size={size} color={color} />
+          title: "صفحه اصلی",
+          tabBarIcon: ({ color }) => (
+            <Feather name="home" size={24} color={color} />
           ),
         }}
       />
     </Tabs>
   );
-};
-
-export default TabsLayout;
+}
